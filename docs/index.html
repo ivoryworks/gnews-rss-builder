@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Google ニュースの検索クエリからRSSフィードURLを作成する非公式ツール"
+    />
+    <title>GNews RSS Builder</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="GNews RSS Builder ホーム">
+        <span class="brand-mark" aria-hidden="true">G</span>
+        <span>GNews RSS Builder</span>
+      </a>
+      <span class="unofficial">Unofficial tool</span>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">QUERY TO FEED</p>
+        <h1 id="page-title">ニュース検索を、<br />購読できるURLに。</h1>
+        <p class="lead">
+          検索文字列、または Google ニュースの検索結果URLを入力すると、
+          RSSリーダーで使えるフィードURLを生成します。
+        </p>
+      </section>
+
+      <section class="workspace" aria-labelledby="builder-title">
+        <div class="section-heading">
+          <span class="step-number" aria-hidden="true">01</span>
+          <div>
+            <h2 id="builder-title">検索条件</h2>
+            <p>キーワードと検索演算子は、そのまま組み合わせられます。</p>
+          </div>
+        </div>
+
+        <form id="builder-form" novalidate>
+          <div class="field query-field">
+            <label for="source-input">検索文字列 または Google ニュースURL</label>
+            <textarea
+              id="source-input"
+              name="source"
+              rows="4"
+              placeholder="例: 生成AI site:example.com after:2026-10-01"
+              aria-describedby="source-help form-message"
+              autofocus
+            ></textarea>
+            <p id="source-help" class="field-help">
+              通常のGoogle検索にある「ニュース」タブのURLには対応していません。
+            </p>
+          </div>
+
+          <details class="settings">
+            <summary>
+              <span>言語と地域</span>
+              <span class="settings-summary" id="settings-summary">ja / JP / JP:ja</span>
+            </summary>
+            <div class="settings-grid">
+              <div class="field">
+                <label for="hl-input">言語 <code>hl</code></label>
+                <input id="hl-input" name="hl" value="ja" autocomplete="off" />
+              </div>
+              <div class="field">
+                <label for="gl-input">国 <code>gl</code></label>
+                <input id="gl-input" name="gl" value="JP" autocomplete="off" />
+              </div>
+              <div class="field">
+                <label for="ceid-input">エディション <code>ceid</code></label>
+                <input id="ceid-input" name="ceid" value="JP:ja" autocomplete="off" />
+              </div>
+            </div>
+          </details>
+
+          <div id="form-message" class="message" aria-live="polite"></div>
+
+          <button class="primary-button" type="submit">
+            <span>RSS URLを生成</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14M13 6l6 6-6 6" />
+            </svg>
+          </button>
+        </form>
+      </section>
+
+      <section id="result-section" class="result-section" aria-labelledby="result-title" hidden>
+        <div class="section-heading compact">
+          <span class="step-number" aria-hidden="true">02</span>
+          <div>
+            <h2 id="result-title">生成したフィードURL</h2>
+            <p>RSSリーダーへ登録するか、XMLを直接確認できます。</p>
+          </div>
+        </div>
+
+        <div class="result-box">
+          <label class="sr-only" for="result-url">生成したRSS URL</label>
+          <textarea id="result-url" rows="3" readonly></textarea>
+          <div class="result-actions">
+            <button id="copy-button" class="secondary-button" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="8" y="8" width="11" height="11" rx="1" />
+                <path d="M16 8V5H5v11h3" />
+              </svg>
+              <span>コピー</span>
+            </button>
+            <a id="open-link" class="secondary-button dark" href="#" target="_blank" rel="noopener">
+              <span>RSSを開く</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M14 5h5v5M19 5l-9 9" />
+                <path d="M18 13v6H5V6h6" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="examples" aria-labelledby="examples-title">
+        <div class="section-heading compact">
+          <span class="step-number" aria-hidden="true">＋</span>
+          <div>
+            <h2 id="examples-title">クエリの組み立て例</h2>
+            <p>選ぶと検索欄に入力されます。</p>
+          </div>
+        </div>
+        <div class="example-list">
+          <button type="button" data-query="生成AI 半導体">
+            <span>複数語</span><code>生成AI 半導体</code>
+          </button>
+          <button type="button" data-query='"生成AI"'>
+            <span>完全一致</span><code>"生成AI"</code>
+          </button>
+          <button type="button" data-query="半導体 -株価">
+            <span>除外</span><code>半導体 -株価</code>
+          </button>
+          <button type="button" data-query="半導体 site:example.com">
+            <span>サイト指定</span><code>半導体 site:example.com</code>
+          </button>
+          <button type="button" data-query="半導体 after:2026-10-01 before:2026-10-07">
+            <span>日付指定</span><code>半導体 after:2026-10-01 before:2026-10-07</code>
+          </button>
+        </div>
+      </section>
+
+      <aside class="notes" aria-labelledby="notes-title">
+        <h2 id="notes-title">利用上の注意</h2>
+        <ul>
+          <li>RSSの記事一覧と検索画面の結果が完全に一致するとは限りません。</li>
+          <li><code>when:7d</code> などは動作する場合がありますが、公開仕様として保証されていません。</li>
+          <li>入力内容は外部へ送信せず、このブラウザー内だけでURLに変換します。</li>
+        </ul>
+      </aside>
+    </main>
+
+    <footer>
+      <p>GNews RSS Builder is an unofficial tool and is not affiliated with Google.</p>
+    </footer>
+  </body>
+</html>
