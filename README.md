@@ -2,6 +2,8 @@
 
 Google ニュースの検索結果 URL または検索クエリから、検索用 RSS フィード URL を生成する非公式の静的ツールです。
 
+公開ページ: <https://ivoryworks.com/gnews-rss-builder/>
+
 ## 主な機能
 
 - 検索クエリと Google ニュース検索結果 URL の両方に対応
@@ -32,7 +34,7 @@ npm test
 2. **Build and deployment** の Source に **Deploy from a branch** を選ぶ
 3. Branch に **main**、フォルダーに **/docs** を選んで保存する
 
-公開 URL は `https://<owner>.github.io/gnews-rss-builder/` の形式になります。
+通常の公開 URL は `https://<owner>.github.io/gnews-rss-builder/` の形式です。このリポジトリではアカウントのカスタムドメイン設定により <https://ivoryworks.com/gnews-rss-builder/> で公開しています。
 
 ## 制約
 
