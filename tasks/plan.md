@@ -16,26 +16,26 @@ Google ニュースの検索結果 URL または検索クエリから、検索�
 
 ### Phase 1: Foundation
 
-- [ ] Task 1: リポジトリとテスト基盤を初期化する
-- [ ] Task 2: URL 解析・生成ロジックをテスト駆動で実装する
+- [x] Task 1: リポジトリとテスト基盤を初期化する
+- [x] Task 2: URL 解析・生成ロジックをテスト駆動で実装する
 
 ### Checkpoint: Foundation
 
-- [ ] 単体テストがすべて成功する
+- [x] 単体テストがすべて成功する
 
 ### Phase 2: Core Features
 
-- [ ] Task 3: 入力フォーム、地域設定、結果操作を実装する
-- [ ] Task 4: エラー、成功、コピー状態をアクセシブルに通知する
+- [x] Task 3: 入力フォーム、地域設定、結果操作を実装する
+- [x] Task 4: エラー、成功、コピー状態をアクセシブルに通知する
 
 ### Checkpoint: Core Features
 
-- [ ] 検索クエリと Google ニュース URL の両方から生成できる
+- [x] 検索クエリと Google ニュース URL の両方から生成できる
 
 ### Phase 3: Verification and Documentation
 
 - [ ] Task 5: レスポンシブ表示とブラウザー操作を確認する
-- [ ] Task 6: 実際の RSS XML 応答を確認し、README に公開方法を記載する
+- [x] Task 6: 実際の RSS XML 応答を確認し、README に公開方法を記載する
 
 ### Checkpoint: Complete
 
@@ -53,3 +53,4 @@ Google ニュースの検索結果 URL または検索クエリから、検索�
 ## Open Questions
 
 - GitHub リポジトリの可視性と Pages 公開は、ローカル実装完了後にユーザー確認を得て実施する。
+- 自動ブラウザー検証は実行環境の共有ライブラリ不足により未完了。ローカル配信の HTTP 200 応答は確認済み。
